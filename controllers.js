@@ -148,6 +148,8 @@ const getTransitsByIdAndDate = (req, res, next) => {
 };
 
 const getCalculatedTransits = (req, res, next) => {
+  const calculationStartTime = performance.now();
+
   const idsArray =
     typeof req.query.id === 'string' ? [req.query.id] : req.query.id;
   const month = req.query.month;
@@ -279,7 +281,11 @@ const getCalculatedTransits = (req, res, next) => {
     });
   });
 
-  res.send({ success: true, data });
+  const calculationEndTime = performance.now();
+
+  const calculationTime = calculationEndTime - calculationStartTime;
+
+  res.send({ success: true, data, calculationTime });
 };
 
 const setYear = (req, res, next) => {

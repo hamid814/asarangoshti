@@ -61,6 +61,12 @@
   animation: 1s rot infinite linear;
 }
 
+.calculation-time {
+  position: fixed;
+  top: 30px;
+  left: 50px;
+}
+
 .table-top-panel {
   text-align: center;
 }

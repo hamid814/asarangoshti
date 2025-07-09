@@ -7,6 +7,7 @@ const Result = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [displayMonth, setDisplayMonth] = useState(null);
+  const [calculationTime, setCalculationTime] = useState(0);
 
   const month = useStore((state) => state.month);
   const staff = useStore((state) => state.staff);
@@ -31,7 +32,9 @@ const Result = () => {
       .then((data) => {
         setLoading(false);
         setData(data.data);
+        setCalculationTime(parseInt(data.calculationTime));
         setDisplayMonth(month);
+        console.log(data);
       });
   };
 
@@ -48,6 +51,7 @@ const Result = () => {
       </button>
       <button onClick={saveExcel}>👈xlsx👉</button>
       <span>ماه:‌ {displayMonth}</span>
+      <span className="calculation-time">{calculationTime}ms</span>
       <table>
         <thead>
           <tr>
