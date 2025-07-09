@@ -1,0 +1,13 @@
+staff
+  # array of Objects
+  # *id<name>: {*name: <name>,
+                *shiftDuration: $num}
+
+originalTransits
+  # raw data of transits containing: id, date(day, hour), <inOrOut>
+
+transits
+  # array of objects, each object containing one transit,
+  # each transit containing: id, date(day, hour)
+    (the data will not be calculated,
+    calculation will happen on each request)

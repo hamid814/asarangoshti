@@ -1,0 +1,347 @@
+:root {
+  --main-bg-color: #d5d5f6;
+}
+
+.App {
+  text-align: center;
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: row-reverse;
+}
+
+.staff-container {
+  margin: 12px;
+  width: 20%;
+  font-size: 12px;
+  background-color: var(--main-bg-color);
+  padding: 20px;
+  border-radius: 30px;
+  overflow-y: scroll;
+}
+
+.table-container {
+  width: 50%;
+  margin: 12px;
+  background-color: var(--main-bg-color);
+  padding: 20px;
+  border-radius: 30px;
+  overflow-y: hidden;
+  text-align: right;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.result-container {
+  width: 30%;
+  margin: 12px;
+  background-color: var(--main-bg-color);
+  padding: 20px;
+  border-radius: 30px;
+  overflow-y: scroll;
+  text-align: right;
+  direction: rtl;
+  position: relative;
+}
+
+.loading-elem {
+  position: absolute;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  left: 10px;
+  top: 10px;
+  z-index: 1;
+  background-image: url('http://localhost:3000/loading.png');
+  background-size: cover;
+  animation: 1s rot infinite linear;
+}
+
+.table-top-panel {
+  text-align: center;
+}
+.table-top-panel input {
+  padding: 3px;
+  width: 60px;
+  font-size: 20px;
+}
+
+.days-of-month {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-top: 20px;
+}
+
+.single-day {
+  margin: 5px;
+  padding: 5px;
+  background-color: #f0f8ffaa;
+  border-radius: 5px;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  padding-right: 20px;
+  position: relative;
+}
+.single-day > div:nth-child(1) {
+  width: 140px;
+}
+.single-day > div:nth-child(1).holiday {
+  color: red;
+}
+.single-day .add-transit-btn {
+  position: absolute;
+  background-color: #6c9;
+  padding: 5px 10px;
+  border-radius: 5px;
+  left: -20px;
+  opacity: 0;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.single-day:hover .add-transit-btn {
+  left: -17px;
+  opacity: 1;
+}
+
+.add-staff-form {
+  margin-top: 10px;
+}
+.add-staff-form input {
+  width: 70px;
+  padding: 10px;
+}
+
+.single-staff {
+  width: 90%;
+  border: 1px solid black;
+  margin: 8px auto;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  transition: 0.5s;
+  position: relative;
+}
+.single-staff.dark {
+  filter: brightness(0.6);
+}
+.single-staff:hover {
+  width: 95%;
+  background-color: aliceblue;
+  cursor: pointer;
+}
+.single-staff.active {
+  background-color: rgb(116, 206, 143);
+}
+.single-staff.active > span {
+  background-color: rgb(116, 206, 143);
+}
+.single-staff > span {
+  transition: 0.5s;
+  background-color: aliceblue;
+  padding: 5px 15px;
+  border-radius: 5px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.single-staff .btn {
+  position: absolute;
+  transition: 0.35s;
+  padding: 5px 10px;
+  opacity: 0;
+}
+.single-staff .btn.delete-btn {
+  border: 1px solid red;
+  left: 0;
+}
+.single-staff:hover .btn.delete-btn {
+  opacity: 1;
+  left: -25px;
+}
+.single-staff .btn.activate-btn {
+  border: 1px solid green;
+  right: 0;
+}
+.single-staff:hover .btn.activate-btn {
+  opacity: 1;
+  right: -25px;
+}
+
+.single-transit {
+  border-radius: 10px;
+  display: inline-block;
+  padding: 7px 20px 7px 15px;
+  margin: auto 10px;
+  direction: ltr;
+  position: relative;
+  background-color: #ccc;
+}
+.single-transit.am::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  content: '';
+  width: 10px;
+  background-color: aqua;
+  border-radius: 0 10px 10px 0;
+}
+.single-transit.pm::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  content: '';
+  width: 10px;
+  background-color: blueviolet;
+  border-radius: 0 10px 10px 0;
+}
+.single-transit span {
+  max-width: 20px !important;
+  min-height: 20px !important;
+  margin-right: -30px;
+  justify-content: center;
+  font-size: 14px;
+  align-items: center;
+  cursor: pointer;
+  background-color: #aa444444;
+  padding: 6px 6px;
+  border-radius: 50px;
+  transition: 0.2s;
+  opacity: 0;
+}
+.single-transit:hover span {
+  opacity: 1;
+  margin-right: 10px;
+}
+.single-transit span:hover {
+  background-color: rgb(250, 22, 22);
+}
+
+.single-shift {
+  width: 190px;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 7px 15px;
+  margin: auto 10px;
+  direction: ltr;
+  position: relative;
+  border: 1px solid black;
+  direction: rtl;
+  transition: 0.35s;
+  cursor: default;
+}
+.single-shift:hover {
+  color: #0000;
+}
+.single-shift > span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  color: #0000;
+}
+.single-shift:hover > span {
+  color: #000;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+  cursor: default;
+}
+tr:nth-child(even) {
+  background-color: #c964;
+  cursor: default;
+}
+td,
+th {
+  border: 1px solid black;
+  padding: 5px 2px;
+  text-align: center;
+  font-size: 14px;
+}
+td.red {
+  color: red;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #00000055;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container.open {
+  display: flex;
+}
+.modal-container.close {
+  display: none;
+}
+.modal {
+  width: 650px;
+  height: 450px;
+  border-radius: 20px;
+  background-color: beige;
+  position: relative;
+  padding: 40px;
+}
+.modal > span {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  cursor: pointer;
+  padding: 15px 20px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: crimson;
+}
+.modal .date {
+  font-size: 32px;
+}
+
+.modal input {
+  padding: 15px;
+  font-size: 20px;
+}
+
+.modal .add-btn {
+  margin: 10px;
+  background-color: teal;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.add-8-btn,
+.add-20-btn {
+  cursor: pointer;
+  padding: 50px;
+  margin: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #6c9;
+}
+
+@keyframes rot {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
