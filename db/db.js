@@ -10,19 +10,19 @@ const moment = require('moment-jalaali');
 // db.set('transits', []);
 
 const getStaff = () => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   return db.get('staff');
 };
 
 const getStaffById = (id) => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   return db.get('staff').filter((s) => s.id == id)[0];
 };
 
 const addStaff = (id, name, shiftDuration) => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   if (getStaffById(id)) {
     return 0;
@@ -36,7 +36,7 @@ const addStaff = (id, name, shiftDuration) => {
 const changeStaffIsActive = (id) => {
   const idNumber = Number(id);
 
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   db.set(
     'staff',
@@ -54,7 +54,7 @@ const changeStaffIsActive = (id) => {
 };
 
 const deleteStaff = (id) => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   db.set(
     'staff',
@@ -63,7 +63,7 @@ const deleteStaff = (id) => {
 };
 
 const getTransitById = (id) => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   const deletedTransits = db.get('deletedTransits').filter((t) => t[0] == id);
   const addedTransits = db.get('addedTransits').filter((t) => t[0] == id);
@@ -86,7 +86,7 @@ const getTransitById = (id) => {
 };
 
 const addDeletedtransit = (id, dateStr) => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   const deletedTransit = [id, dateStr];
 
@@ -101,7 +101,7 @@ const addDeletedtransit = (id, dateStr) => {
 };
 
 const addAddedTransit = (id, dateStr) => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   const addedTransit = [id, dateStr];
 
@@ -117,7 +117,7 @@ const addAddedTransit = (id, dateStr) => {
 };
 
 const resetTransitsInMonth = (id, month, year) => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   const twoDigitMonth = ('0' + month).slice(-2);
 
@@ -175,19 +175,19 @@ const importFromLog = async () => {
     originalTransits.push(splited);
   }
 
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
   db.set('originalTransits', originalTransits);
 };
 // importFromLog();
 
 const backup = () => {
-  const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+  const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
-  db.backup('C:/Users/Hamid/Desktop/HGA/db/db-backup.json', false);
+  db.backup('C:/Users/Hamid/Desktop/asarangoshti/db/db-backup.json', false);
 };
 // backup();
 
-// const db = new FSDB('C:/Users/Hamid/Desktop/HGA/db/db', false);
+// const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 // db.set('deletedTransits', []);
 // db.set('staff', []);
 // db.set('originalTransits', []);

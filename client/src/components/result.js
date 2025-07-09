@@ -43,10 +43,10 @@ const Result = () => {
   return (
     <>
       <button onClick={getResult}>
-        {loading ? 'loading...' : 'دریافت اطلاعات کلی'}
+        {loading ? 'loading...' : '🔄دریافت اطلاعات کلی'}
         {loading && <div className="loading-elem"></div>}
       </button>
-      <button onClick={saveExcel}>xlsx</button>
+      <button onClick={saveExcel}>👈xlsx👉</button>
       <span>ماه:‌ {displayMonth}</span>
       <table>
         <thead>

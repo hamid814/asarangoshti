@@ -88,24 +88,24 @@ const Table = () => {
           ماه:🌕
           <input onChange={handleMonthChange} value={month} type="number" />
           <button
-            // mimic the value of the input
+            // mimic the value of the input element
             onClick={() => handleMonthChange({ target: { value: month + 1 } })}
             style={{ padding: '5px' }}
           >
             ➕
           </button>
           <button
-            // mimic the value of the input
+            // mimic the value of the input element
             onClick={() => handleMonthChange({ target: { value: month - 1 } })}
             style={{ padding: '5px' }}
           >
             ➖
           </button>{' '}
           <button onClick={handleGetMonth} style={{ padding: '5px' }}>
-            📅بروزرسانی تقویم
+            📅به‌روز تقویم
           </button>
           <button onClick={handleUpdateTransits} style={{ padding: '5px' }}>
-            🏃‍♂️بروزرسانی ورود خروج
+            🏃‍♂️به‌روز ورود خروج
           </button>
           <button
             onClick={handleResetMonthTransits}
