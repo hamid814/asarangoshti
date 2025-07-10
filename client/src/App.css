@@ -81,7 +81,7 @@ button {
 }
 .print-btn.print-active {
   background-color: red;
-  animation: 2.5s printbtndanger infinite ease-in-out;
+  animation: 1.5s printbtndanger infinite ease-in-out;
 }
 
 .table-top-panel {
