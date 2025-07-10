@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "both": "concurrently \"node server\" \"cd client && npm start\""
+  },
   "dependencies": {
     "colors": "^1.4.0",
     "cors": "^2.8.5",
@@ -10,6 +13,7 @@
     "randomcolor": "^0.6.2"
   },
   "devDependencies": {
+    "concurrently": "^9.2.0",
     "nodemon": "^3.1.10"
   }
 }
