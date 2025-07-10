@@ -10,7 +10,7 @@ const useStore = create((set, get) => ({
   activeDay: null, // 1404-01-01
   isModalOpen: false,
   stepToUpdate: 0,
-  print: true,
+  print: false,
   setStaff: (staff) => set((state) => ({ staff })),
   setActiveStaffId: (id) => set((state) => ({ activeStaffId: id })),
   setWholeData: (wholeData) => set((state) => ({ wholeData })),
