@@ -1,0 +1,35 @@
+.print-container {
+  display: none !important;
+}
+.print-item {
+  height: 100vh;
+}
+.print-item table {
+  direction: rtl;
+  height: 95%;
+  width: 98%;
+  margin: 0 auto;
+}
+.print-item table td {
+  font-size: 13px;
+  padding: 0;
+}
+.print-item table tr.holiday {
+  background-color: lightsalmon;
+}
+.transit-in-print-table {
+  border: 1px solid black;
+  border-radius: 100px;
+  padding: 0 10px;
+  margin: 0 10px;
+}
+
+@media print {
+  .print-container {
+    display: block !important;
+  }
+  .hide-btn,
+  .main-container {
+    display: none !important;
+  }
+}

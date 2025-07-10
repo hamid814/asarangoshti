@@ -8,18 +8,19 @@ moment.loadPersian({
 });
 
 const Table = () => {
-  const [days, setDays] = useState([]);
   const [transits, setTransits] = useState([]);
   const [shifts, setShifts] = useState([]);
   const [daysCount, setDaysCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
 
+  const staff = useStore((state) => state.staff);
   const activeStaffId = useStore((state) => state.activeStaffId);
   const month = useStore((state) => state.month);
   const setMonth = useStore((state) => state.setMonth);
   const stepToUpdate = useStore((state) => state.stepToUpdate);
-  const staff = useStore((state) => state.staff);
+  const days = useStore((state) => state.daysInMonth);
+  const setDays = useStore((state) => state.setDaysInMonth);
 
   useEffect(() => {
     handleUpdateTransits();

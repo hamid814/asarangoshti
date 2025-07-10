@@ -2,6 +2,14 @@
   --main-bg-color: #d5d5f6;
 }
 
+button {
+  padding: 2px;
+  border-radius: 6px;
+  border: none;
+  margin: 4px;
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
 }
@@ -65,6 +73,15 @@
   position: fixed;
   top: 30px;
   left: 50px;
+  color: darkgreen;
+}
+
+.print-btn {
+  background-color: #6c9;
+}
+.print-btn.print-active {
+  background-color: red;
+  animation: 2.5s printbtndanger infinite ease-in-out;
 }
 
 .table-top-panel {
@@ -349,5 +366,17 @@ td.red {
   }
   100% {
     transform: rotate(0);
+  }
+}
+
+@keyframes printbtndanger {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: white;
+  }
+  100% {
+    background-color: red;
   }
 }

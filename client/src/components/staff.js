@@ -124,8 +124,6 @@ const SingleStaff = ({ staff, handleClick, activeStaffId }) => {
   };
 
   const handleSingleStaffClick = (e) => {
-    // console.log();
-
     if (![...e.target.classList].includes('activate-btn')) {
       if (![...e.target.classList].includes('delete-btn')) {
         handleClick(staff.id);
