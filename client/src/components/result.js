@@ -7,6 +7,7 @@ const Result = () => {
   const [loading, setLoading] = useState(false);
   const [displayMonth, setDisplayMonth] = useState(null);
   const [calculationTime, setCalculationTime] = useState(0);
+  const [tableMode, setTableMode] = useState('sepidar');
 
   const month = useStore((state) => state.month);
   const data = useStore((state) => state.wholeData);
@@ -15,6 +16,25 @@ const Result = () => {
   const setActiveStaffId = useStore((state) => state.setActiveStaffId);
   const print = useStore((state) => state.print);
   const setPrint = useStore((state) => state.setPrint);
+
+  // number of hours [movazaf] in a month
+  const movazafiList = [
+    160, 200, 184, 200, 200, 192, 208, 200, 200, 192, 192, 184,
+  ];
+  const monthNames = [
+    'Farvardin',
+    'Ordibehesht',
+    'Khordad',
+    'Tir',
+    'Mordad',
+    'Shahrivar',
+    'Mehr',
+    'Aban',
+    'Azar',
+    'Dey',
+    'Bahman',
+    'Esfand',
+  ];
 
   useEffect(() => {
     getResult();
@@ -40,15 +60,27 @@ const Result = () => {
       });
   };
 
+  const handleTableMode = (e) => {
+    setTableMode(e.target.value);
+  };
+
   const saveExcel = () => {
     const json = tableToJson();
-    jsonToExcel(json, month);
+    jsonToExcel(json, `${monthNames[month - 1]}-${tableMode}`);
+  };
+
+  const displayHour = (number) => {
+    if (tableMode === 'sepidar') {
+      return ('00' + Math.ceil(number)).slice(-3) + '00';
+    } else {
+      return Math.ceil(number);
+    }
   };
 
   return (
     <>
       <button onClick={getResult}>
-        {loading ? 'loading...' : '🔄دریافت اطلاعات کلی'}
+        {loading ? 'loading...' : '🔄به‌روز جدول'}
         {loading && <div className="loading-elem"></div>}
       </button>
       <button onClick={saveExcel}>👈xlsx👉</button>
@@ -60,18 +92,30 @@ const Result = () => {
       >
         {print ? 'Print Active' : 'Not Printing'}
       </button>
+      <select name="tableMode" onChange={handleTableMode}>
+        <option value="man">Man</option>
+        <option value="excel">Excel</option>
+        <option value="sepidar">Sepidar</option>
+      </select>
       <span>ماه:‌ {displayMonth}</span>
       <span className="calculation-time">{calculationTime}ms</span>
       <table>
         <thead>
           <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>nc</th>
-            <th>days</th>
+            <th>{tableMode === 'sepidar' ? 'كد' : 'id'}</th>
+            {tableMode === 'man' && (
+              <>
+                <th>nc</th>
+                <th>name</th>
+              </>
+            )}
+            <th>{tableMode === 'sepidar' ? 'كاركرد روزانه' : 'days'}</th>
             <th>duration</th>
-            <th>night</th>
-            <th>holiday</th>
+            <th>{tableMode === 'sepidar' ? 'كاركرد اضافه كاري' : 'ezafe'}</th>
+            <th>{tableMode === 'sepidar' ? 'كاركرد شب‌كاري' : 'night'}</th>
+            <th>
+              {tableMode === 'sepidar' ? 'كاركرد تعطيلي ساعتي' : 'holiday'}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -81,19 +125,28 @@ const Result = () => {
             item.total.holidayDuration ? (
               <tr key={index} onClick={() => setActiveStaffId(Number(item.id))}>
                 <td>{item.id}</td>
-                <td className="name">
-                  {
-                    staff.filter((s) => Number(s.id) === Number(item.id))[0]
-                      .name
-                  }
-                </td>
-                <td className={item.incompleteTransits.length && 'red'}>
-                  {item.incompleteTransits.length}
-                </td>
+                {tableMode === 'man' && (
+                  <>
+                    <td className="name">
+                      {
+                        staff.filter((s) => Number(s.id) === Number(item.id))[0]
+                          .name
+                      }
+                    </td>
+                    <td className={item.incompleteTransits.length && 'red'}>
+                      {item.incompleteTransits.length}
+                    </td>
+                  </>
+                )}
                 <td>{item.total.days}</td>
-                <td>{item.total.duration}</td>
-                <td>{item.total.nightDuration}</td>
-                <td>{item.total.holidayDuration}</td>
+                <td>{displayHour(item.total.duration)}</td>
+                <td>
+                  {displayHour(
+                    Math.max(0, item.total.duration - movazafiList[month - 1])
+                  )}
+                </td>
+                <td>{displayHour(item.total.nightDuration)}</td>
+                <td>{displayHour(item.total.holidayDuration)}</td>
               </tr>
             ) : (
               ''

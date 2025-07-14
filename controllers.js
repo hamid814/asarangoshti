@@ -156,6 +156,8 @@ const getCalculatedTransits = (req, res, next) => {
   const year = config.year;
 
   const data = [];
+  const startHours = {};
+  const endHours = {};
 
   if (!req.query.id) {
     res.send({
@@ -248,6 +250,18 @@ const getCalculatedTransits = (req, res, next) => {
         );
         shift.color = color;
 
+        if (startHours[shift.startHour]) {
+          startHours[shift.startHour] += 1;
+        } else {
+          startHours[shift.startHour] = 1;
+        }
+
+        if (endHours[shift.endHour]) {
+          endHours[shift.endHour] += 1;
+        } else {
+          endHours[shift.endHour] = 1;
+        }
+
         shifts.push(shift);
       }
     });
@@ -280,6 +294,9 @@ const getCalculatedTransits = (req, res, next) => {
       incompleteTransits,
     });
   });
+
+  console.log(startHours);
+  console.log(endHours);
 
   const calculationEndTime = performance.now();
 

@@ -9,6 +9,57 @@ const genShift = (startDateStr, endDateStr, month, year, shiftDuration) => {
   let startM = new moment(startDateStr);
   let endM = new moment(endDateStr);
 
+  const startHour = Number(startM.format('HH'));
+  const endHour = Number(endM.format('HH'));
+
+  // round early enters and late leaves
+  const morningHours = [6, 7, 8, 9];
+  const eveningHours = [18, 19, 20, 21];
+
+  if (morningHours.includes(startHour) || eveningHours.includes(endHour)) {
+    // day shift
+    const shiftStartM = startM.clone();
+    shiftStartM.hour(8);
+    shiftStartM.minute(15);
+    const shiftEndM = endM.clone();
+    shiftEndM.hour(19);
+    shiftEndM.minute(45);
+
+    if (shiftStartM.isAfter(startM)) {
+      startM.hour(7);
+      startM.minute(59);
+      startM.second(59);
+    }
+    if (shiftEndM.isBefore(endM)) {
+      endM.hour(20);
+      endM.minute(0);
+      endM.second(1);
+    }
+  } else if (
+    eveningHours.includes(startHour) ||
+    morningHours.includes(endHour)
+  ) {
+    // night shift
+    const shiftStartM = startM.clone();
+    shiftStartM.hour(20);
+    shiftStartM.minute(15);
+    const shiftEndM = endM.clone();
+    shiftEndM.hour(7);
+    shiftEndM.minute(45);
+
+    if (shiftStartM.isAfter(startM)) {
+      startM.hour(19);
+      startM.minute(59);
+      startM.second(59);
+    }
+    if (shiftEndM.isBefore(endM)) {
+      endM.hour(8);
+      endM.minute(0);
+      endM.second(1);
+    }
+  }
+
+  // round start and end of month
   const monthStartM = new moment(
     `${year}-${twoDigitMonth}`,
     'jYYYY-jMM'
@@ -45,13 +96,11 @@ const genShift = (startDateStr, endDateStr, month, year, shiftDuration) => {
   const holidayRanges = getHolidayRanges(startM, endM, year);
 
   holidayRanges.forEach((holidayrange) => {
-    holidayDuration += Math.min(
-      getIntersectionDuration(
-        startM,
-        endM,
-        holidayrange.start,
-        holidayrange.end
-      )
+    holidayDuration += getIntersectionDuration(
+      startM,
+      endM,
+      holidayrange.start,
+      holidayrange.end
     );
   });
 

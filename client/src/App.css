@@ -260,9 +260,12 @@ button {
   direction: rtl;
   transition: 0.35s;
   cursor: default;
+  transform: scale(1);
 }
 .single-shift:hover {
   color: #0000;
+  transform: scale(1.5);
+  opacity: 0.9;
 }
 .single-shift > span {
   position: absolute;
