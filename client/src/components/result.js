@@ -66,7 +66,12 @@ const Result = () => {
 
   const saveExcel = () => {
     const json = tableToJson();
-    jsonToExcel(json, `${monthNames[month - 1]}-${tableMode}`);
+    jsonToExcel(
+      json,
+      `${monthNames[month - 1]}-${tableMode}.${
+        tableMode === 'sepidar' ? 'xls' : 'xlsx'
+      }`
+    );
   };
 
   const displayHour = (number) => {
@@ -93,7 +98,7 @@ const Result = () => {
         {print ? 'Print Active' : 'Not Printing'}
       </button>
       <select name="tableMode" onChange={handleTableMode}>
-        <option value="man">Man</option>
+        <option value="man">Me</option>
         <option value="excel">Excel</option>
         <option value="sepidar">Sepidar</option>
       </select>
@@ -105,12 +110,12 @@ const Result = () => {
             <th>{tableMode === 'sepidar' ? 'كد' : 'id'}</th>
             {tableMode === 'man' && (
               <>
-                <th>nc</th>
                 <th>name</th>
+                <th>nc</th>
               </>
             )}
             <th>{tableMode === 'sepidar' ? 'كاركرد روزانه' : 'days'}</th>
-            <th>duration</th>
+            {tableMode !== 'sepidar' && <th>duration</th>}
             <th>{tableMode === 'sepidar' ? 'كاركرد اضافه كاري' : 'ezafe'}</th>
             <th>{tableMode === 'sepidar' ? 'كاركرد شب‌كاري' : 'night'}</th>
             <th>
@@ -124,7 +129,7 @@ const Result = () => {
             item.total.nightDuration +
             item.total.holidayDuration ? (
               <tr key={index} onClick={() => setActiveStaffId(Number(item.id))}>
-                <td>{item.id}</td>
+                <td>{tableMode === 'sepidar' ? '3' + item.id : item.id}</td>
                 {tableMode === 'man' && (
                   <>
                     <td className="name">
@@ -139,7 +144,9 @@ const Result = () => {
                   </>
                 )}
                 <td>{item.total.days}</td>
-                <td>{displayHour(item.total.duration)}</td>
+                {tableMode !== 'sepidar' && (
+                  <td>{displayHour(item.total.duration)}</td>
+                )}
                 <td>
                   {displayHour(
                     Math.max(0, item.total.duration - movazafiList[month - 1])
