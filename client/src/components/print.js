@@ -24,6 +24,7 @@ const Print = () => {
 
   return (
     <>
+      {/* eslint-disable-next-line */}
       {data.map((item) => {
         if (item.total.days > 0) {
           return (

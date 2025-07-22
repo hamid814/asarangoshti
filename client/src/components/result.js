@@ -16,6 +16,7 @@ const Result = () => {
   const setActiveStaffId = useStore((state) => state.setActiveStaffId);
   const print = useStore((state) => state.print);
   const setPrint = useStore((state) => state.setPrint);
+  const setTheme = useStore((state) => state.setTheme);
 
   // number of hours [movazaf] in a month
   const movazafiList = [
@@ -101,6 +102,11 @@ const Result = () => {
         <option value="man">Me</option>
         <option value="excel">Excel</option>
         <option value="sepidar">Sepidar</option>
+      </select>
+      <select name="theme" onChange={(e) => setTheme(e.target.value)}>
+        <option value="original">Original</option>
+        <option value="modern">Modern</option>
+        <option value="retro">Retro</option>
       </select>
       <span>ماه:‌ {displayMonth}</span>
       <span className="calculation-time">{calculationTime}ms</span>

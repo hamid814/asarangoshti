@@ -11,9 +11,10 @@ import Modal from './components/modal';
 
 function App() {
   const print = useStore((state) => state.print);
+  const theme = useStore((state) => state.theme);
 
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
       <div className="main-container">
         <div className="staff-container">
           <Staff />

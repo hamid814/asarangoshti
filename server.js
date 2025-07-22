@@ -25,7 +25,7 @@ app.use(
 
 app.use('/api', require('./routes'));
 
-// app.get('*', (req, res) => {
+// app.get('/{*splat}', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'client/build/index.html'));
 // });
 
@@ -34,8 +34,8 @@ app.listen(PORT, () => {
 });
 
 // Handle unhandled promise rejections
-process.on('unhandledRejection', (err, promise) => {
-  console.log(`Error: ${err.message}`.red);
-  // Close server & exit process
-  server.close(() => process.exit(1));
-});
+// process.on('unhandledRejection', (err, promise) => {
+//   console.log(`Error: ${err.message}`.red);
+//   // Close server & exit process
+//   server.close(() => process.exit(1));
+// });

@@ -11,6 +11,7 @@ const useStore = create((set, get) => ({
   isModalOpen: false,
   stepToUpdate: 0,
   print: false,
+  theme: 'original',
   setStaff: (staff) => set((state) => ({ staff })),
   setActiveStaffId: (id) => set((state) => ({ activeStaffId: id })),
   setWholeData: (wholeData) => set((state) => ({ wholeData })),
@@ -22,6 +23,7 @@ const useStore = create((set, get) => ({
   setPrint: () => set((state) => ({ print: !state.print })),
   setStepToUpdate: () =>
     set((state) => ({ stepToUpdate: state.stepToUpdate + 1 })),
+  setTheme: (theme) => set((state) => ({ theme })),
 }));
 
 export default useStore;

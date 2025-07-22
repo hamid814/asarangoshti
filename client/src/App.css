@@ -1,13 +1,70 @@
-:root {
+/* Original Theme */
+[data-theme='original'] {
   --main-bg-color: #d5d5f6;
+  --container-bg-color: #f0f8ff;
+  --text-color: #000000;
+  --button-bg-color: #6c9;
+  --button-hover-bg-color: #5a8;
+  --holiday-color: red;
+  --active-color: rgb(116, 206, 143);
+  --border-color: black;
+  --border-radius: 6px;
+  --font-family: sans-serif;
+  --text-shadow: none;
+}
+
+/* Modern Theme */
+[data-theme='modern'] {
+  --main-bg-color: #2c2f33;
+  --container-bg-color: #23272a;
+  --text-color: #ffffff;
+  --button-bg-color: #7289da;
+  --button-hover-bg-color: #677bc4;
+  --holiday-color: #f04747;
+  --active-color: #43b581;
+  --border-color: #4f545c;
+  --border-radius: 15px;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --text-shadow: none;
+}
+
+/* Retro Theme */
+[data-theme='retro'] {
+  --main-bg-color: #0a0a0a;
+  --container-bg-color: #1a1a1a;
+  --text-color: #00ff00;
+  --button-bg-color: #008000;
+  --button-hover-bg-color: #006400;
+  --holiday-color: #ff4500;
+  --active-color: #32cd32;
+  --border-color: #00ff00;
+  --border-radius: 0;
+  --font-family: 'Courier New', Courier, monospace;
+  --text-shadow: 0 0 2px var(--text-color);
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  text-shadow: var(--text-shadow);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button {
-  padding: 2px;
-  border-radius: 6px;
-  border: none;
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
   margin: 4px;
   cursor: pointer;
+  background-color: var(--button-bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg-color);
 }
 
 .App {
@@ -20,45 +77,39 @@ button {
   flex-direction: row-reverse;
 }
 
-.staff-container {
+.staff-container,
+.table-container,
+.result-container {
   margin: 12px;
-  width: 20%;
-  font-size: 12px;
-  background-color: var(--main-bg-color);
+  background-color: var(--container-bg-color);
   padding: 20px;
-  border-radius: 30px;
-  overflow-y: scroll;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--border-color);
+  overflow-y: auto;
+  box-shadow: none;
+}
+
+.staff-container {
+  width: 20%;
+  font-size: 14px;
 }
 
 .table-container {
   width: 50%;
-  margin: 12px;
-  background-color: var(--main-bg-color);
-  padding: 20px;
-  border-radius: 30px;
-  overflow-y: hidden;
   text-align: right;
   direction: rtl;
-  display: flex;
-  flex-direction: column;
   position: relative;
 }
 
 .result-container {
   width: 30%;
-  margin: 12px;
-  background-color: var(--main-bg-color);
-  padding: 20px;
-  border-radius: 30px;
-  overflow-y: scroll;
   text-align: right;
   direction: rtl;
-  position: relative;
 }
 
 .loading-elem {
   position: absolute;
-  border-radius: 50px;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
   left: 10px;
@@ -73,157 +124,164 @@ button {
   position: fixed;
   top: 30px;
   left: 50px;
-  color: darkgreen;
+  color: var(--active-color);
 }
 
 .print-btn {
-  background-color: #6c9;
+  background-color: var(--button-bg-color);
 }
 .print-btn.print-active {
-  background-color: red;
+  background-color: var(--holiday-color);
   animation: 1.5s printbtndanger infinite ease-in-out;
 }
 
 .table-top-panel {
   text-align: center;
+  margin-bottom: 20px;
 }
 .table-top-panel input {
-  padding: 3px;
-  width: 60px;
-  font-size: 20px;
+  padding: 8px;
+  width: 80px;
+  font-size: 18px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
 }
 
 .days-of-month {
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-y: auto;
   margin-top: 20px;
 }
 
 .single-day {
-  margin: 5px;
-  padding: 5px;
-  background-color: #f0f8ffaa;
-  border-radius: 5px;
+  margin: 8px 0;
+  padding: 10px;
+  background-color: var(--container-bg-color);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
   display: flex;
-  height: 50px;
   align-items: center;
   padding-right: 20px;
   position: relative;
+  transition: background-color 0.3s ease;
+}
+.single-day:hover {
+  background-color: var(--main-bg-color);
 }
 .single-day > div:nth-child(1) {
-  width: 140px;
+  width: 160px;
+  font-weight: bold;
 }
 .single-day > div:nth-child(1).holiday {
-  color: red;
+  color: var(--holiday-color);
 }
 .single-day .add-transit-btn {
   position: absolute;
-  background-color: #6c9;
+  background-color: var(--active-color);
   padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   left: -20px;
   opacity: 0;
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 .single-day:hover .add-transit-btn {
-  left: -17px;
+  left: 10px;
   opacity: 1;
 }
 
 .add-staff-form {
   margin-top: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+.add-staff-form.visible {
+  max-height: 500px; /* Adjust as needed */
 }
 .add-staff-form input {
-  width: 70px;
+  width: calc(100% - 22px);
   padding: 10px;
+  margin-bottom: 10px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
 }
 
 .single-staff {
-  width: 90%;
-  border: 1px solid black;
-  margin: 8px auto;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  margin: 8px 0;
   display: flex;
   justify-content: space-between;
-  border-radius: 5px;
-  transition: 0.5s;
+  align-items: center;
+  border-radius: var(--border-radius);
+  transition: 0.3s ease;
   position: relative;
+  background-color: var(--container-bg-color);
+  padding: 10px;
 }
 .single-staff.dark {
-  filter: brightness(0.6);
+  filter: brightness(0.7);
 }
 .single-staff:hover {
-  width: 95%;
-  background-color: aliceblue;
+  background-color: var(--main-bg-color);
   cursor: pointer;
 }
 .single-staff.active {
-  background-color: rgb(116, 206, 143);
+  background-color: var(--active-color);
+  border-color: var(--active-color);
 }
 .single-staff.active > span {
-  background-color: rgb(116, 206, 143);
+  color: var(--main-bg-color);
 }
 .single-staff > span {
-  transition: 0.5s;
-  background-color: aliceblue;
-  padding: 5px 15px;
-  border-radius: 5px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 5px 10px;
 }
 .single-staff .btn {
   position: absolute;
   transition: 0.35s;
   padding: 5px 10px;
   opacity: 0;
+  border-radius: var(--border-radius);
 }
 .single-staff .btn.delete-btn {
-  border: 1px solid red;
-  left: 0;
+  background-color: var(--holiday-color);
+  left: -15px;
 }
 .single-staff:hover .btn.delete-btn {
   opacity: 1;
-  left: -25px;
+  left: -40px;
 }
 .single-staff .btn.activate-btn {
-  border: 1px solid green;
-  right: 0;
+  background-color: var(--button-bg-color);
+  right: -15px;
 }
 .single-staff:hover .btn.activate-btn {
   opacity: 1;
-  right: -25px;
+  right: -40px;
 }
 
 .single-transit {
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   display: inline-block;
-  padding: 7px 20px 7px 15px;
+  padding: 8px 15px;
   margin: auto 10px;
   direction: ltr;
   position: relative;
-  background-color: #ccc;
+  background-color: var(--container-bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
 }
 .single-transit.am::after {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  content: '';
-  width: 10px;
-  background-color: aqua;
-  border-radius: 0 10px 10px 0;
+  display: none;
 }
 .single-transit.pm::after {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  content: '';
-  width: 10px;
-  background-color: blueviolet;
-  border-radius: 0 10px 10px 0;
+  display: none;
 }
 .single-transit span {
   max-width: 20px !important;
@@ -233,9 +291,9 @@ button {
   font-size: 14px;
   align-items: center;
   cursor: pointer;
-  background-color: #aa444444;
-  padding: 6px 6px;
-  border-radius: 50px;
+  background-color: rgba(255, 0, 0, 0.5);
+  padding: 6px;
+  border-radius: var(--border-radius);
   transition: 0.2s;
   opacity: 0;
 }
@@ -244,28 +302,27 @@ button {
   margin-right: 10px;
 }
 .single-transit span:hover {
-  background-color: rgb(250, 22, 22);
+  background-color: var(--holiday-color);
 }
 
 .single-shift {
-  width: 190px;
+  width: 220px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   display: inline-block;
-  padding: 7px 15px;
+  padding: 8px 15px;
   margin: auto 10px;
   direction: ltr;
   position: relative;
-  border: 1px solid black;
+  color: var(--main-bg-color);
+  border: 1px solid var(--border-color);
+  background-color: var(--text-color);
   direction: rtl;
   transition: 0.35s;
   cursor: default;
-  transform: scale(1);
 }
 .single-shift:hover {
-  color: #0000;
-  transform: scale(1.5);
-  opacity: 0.9;
+  transform: scale(1.05);
 }
 .single-shift > span {
   position: absolute;
@@ -275,11 +332,14 @@ button {
   right: 0;
   display: flex;
   align-items: center;
-  justify-self: center;
-  color: #0000;
+  justify-content: center;
+  color: var(--main-bg-color);
+  background-color: rgba(0, 255, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .single-shift:hover > span {
-  color: #000;
+  opacity: 1;
 }
 
 table {
@@ -287,20 +347,24 @@ table {
   width: 100%;
   margin-top: 10px;
   cursor: default;
+  background-color: var(--container-bg-color);
+  border: 1px solid var(--border-color);
 }
 tr:nth-child(even) {
-  background-color: #c964;
-  cursor: default;
+  background-color: var(--main-bg-color);
 }
 td,
 th {
-  border: 1px solid black;
-  padding: 5px 2px;
+  border: 1px solid var(--border-color);
+  padding: 8px;
   text-align: center;
   font-size: 14px;
 }
+th {
+  background-color: var(--button-bg-color);
+}
 td.red {
-  color: red;
+  color: var(--holiday-color);
 }
 
 .modal-container {
@@ -309,7 +373,7 @@ td.red {
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: #00000055;
+  background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
 }
@@ -322,35 +386,42 @@ td.red {
 .modal {
   width: 650px;
   height: 450px;
-  border-radius: 20px;
-  background-color: beige;
+  border-radius: var(--border-radius);
+  background-color: var(--container-bg-color);
   position: relative;
   padding: 40px;
+  border: 2px solid var(--border-color);
 }
 .modal > span {
   position: absolute;
   left: 20px;
   top: 20px;
   cursor: pointer;
-  padding: 15px 20px;
-  border-radius: 10px;
-  color: #fff;
-  background-color: crimson;
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  background-color: var(--holiday-color);
 }
 .modal .date {
   font-size: 32px;
+  color: var(--text-color);
 }
 
 .modal input {
   padding: 15px;
   font-size: 20px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
 }
 
 .modal .add-btn {
   margin: 10px;
-  background-color: teal;
+  background-color: var(--button-bg-color);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
 }
 
 .add-8-btn,
@@ -359,27 +430,28 @@ td.red {
   padding: 50px;
   margin: 20px;
   font-size: 20px;
-  border-radius: 10px;
-  background-color: #6c9;
+  border-radius: var(--border-radius);
+  background-color: var(--active-color);
 }
 
 @keyframes rot {
   0% {
-    transform: rotate(360deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotate(0);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes printbtndanger {
   0% {
-    background-color: red;
+    background-color: var(--holiday-color);
   }
   50% {
-    background-color: white;
+    background-color: var(--text-color);
+    color: var(--holiday-color);
   }
   100% {
-    background-color: red;
+    background-color: var(--holiday-color);
   }
 }
