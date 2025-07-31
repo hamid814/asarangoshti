@@ -186,6 +186,7 @@ const getCalculatedTransits = (req, res, next) => {
     }
 
     const shifts = [];
+    let shiftsCount = 0;
     const transits = [];
     const incompleteTransits = [];
     const days = new Set();
@@ -259,8 +260,18 @@ const getCalculatedTransits = (req, res, next) => {
           incompleteTransits.push({ ...t });
     });
 
+    // count number of shifts in month ( if end of end of shift is in month )
+    shifts.forEach((s) => {
+      const shiftEndM = new moment(s.endStr);
+
+      if (Number(shiftEndM.format('jMM')) === Number(month)) {
+        shiftsCount++;
+      }
+    });
+
     const total = {
       days: days.size,
+      shiftsCount,
       duration: parseFloat(
         shifts.reduce((acc, shift) => acc + shift.duration, 0).toFixed(2)
       ),

@@ -178,7 +178,7 @@ const importFromLog = async () => {
   const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
   db.set('originalTransits', originalTransits);
 };
-importFromLog();
+// importFromLog();
 
 const backup = () => {
   const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);

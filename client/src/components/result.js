@@ -103,7 +103,11 @@ const Result = () => {
         <option value="excel">Excel</option>
         <option value="sepidar">Sepidar</option>
       </select>
-      <select name="theme" onChange={(e) => setTheme(e.target.value)}>
+      <select
+        name="theme"
+        value={tableMode}
+        onChange={(e) => setTheme(e.target.value)}
+      >
         <option value="original">Original</option>
         <option value="modern">Modern</option>
         <option value="retro">Retro</option>
