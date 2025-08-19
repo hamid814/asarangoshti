@@ -131,6 +131,7 @@ const Result = () => {
             <th>
               {tableMode === 'sepidar' ? 'كاركرد تعطيلي ساعتي' : 'holiday'}
             </th>
+            <th>تعداد شیفت</th>
           </tr>
         </thead>
         <tbody>
@@ -164,6 +165,7 @@ const Result = () => {
                 </td>
                 <td>{displayHour(item.total.nightDuration)}</td>
                 <td>{displayHour(item.total.holidayDuration)}</td>
+                <td>{item.total.shiftsCount}</td>
               </tr>
             ) : (
               ''
