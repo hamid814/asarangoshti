@@ -177,13 +177,17 @@ const importFromLog = async () => {
 
   const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
   db.set('originalTransits', originalTransits);
+
+  console.log('imported originalTransits from log.txt file successfuly!');
 };
-// importFromLog();
+importFromLog();
 
 const backup = () => {
   const db = new FSDB('C:/Users/Hamid/Desktop/asarangoshti/db/db', false);
 
   db.backup('C:/Users/Hamid/Desktop/asarangoshti/db/db-backup.json', false);
+
+  console.log('backed up successfuly!');
 };
 // backup();
 
