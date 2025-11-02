@@ -245,8 +245,7 @@ const getCalculatedTransits = (req, res, next) => {
           transits[i + 1].dateStr,
           month,
           year,
-          thisStaff.shiftDuration,
-          id
+          thisStaff.shiftDuration
         );
         shift.color = color;
 

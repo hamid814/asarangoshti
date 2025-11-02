@@ -3,7 +3,7 @@ const moment = require('moment-jalaali');
 const app = require('./server');
 const holidaysList = require('./holidayslist');
 
-const genShift = (startDateStr, endDateStr, month, year, shiftDuration, id) => {
+const genShift = (startDateStr, endDateStr, month, year, shiftDuration) => {
   const twoDigitMonth = ('0' + month).slice(-2);
 
   let startM = new moment(startDateStr);
