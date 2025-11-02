@@ -2,16 +2,16 @@ import { create } from 'zustand';
 
 const useStore = create((set, get) => ({
   staff: [],
-  activeStaffId: 8483,
+  activeStaffId: 9880,
   wholeData: [], // all of data of all staff for active month
   daysInMonth: [],
-  month: 2,
+  month: 7,
   year: 1404, // year is not used in the client app - the backend has the year functionality (/api/set-year) and (config.js.year) - right now to change year => change to config.js file
   activeDay: null, // 1404-01-01
   isModalOpen: false,
   stepToUpdate: 0,
   print: false,
-  theme: 'original',
+  theme: 'modern',
   setStaff: (staff) => set((state) => ({ staff })),
   setActiveStaffId: (id) => set((state) => ({ activeStaffId: id })),
   setWholeData: (wholeData) => set((state) => ({ wholeData })),

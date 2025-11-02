@@ -17,6 +17,7 @@ const Result = () => {
   const print = useStore((state) => state.print);
   const setPrint = useStore((state) => state.setPrint);
   const setTheme = useStore((state) => state.setTheme);
+  const theme = useStore((state) => state.theme);
 
   // number of hours [movazaf] in a month
   const movazafiList = [
@@ -79,6 +80,7 @@ const Result = () => {
     if (tableMode === 'sepidar') {
       return ('00' + Math.ceil(number)).slice(-3) + '00';
     } else {
+      return (Math.round(number * 100) / 100).toFixed(2);
       return Math.ceil(number);
     }
   };
@@ -105,7 +107,7 @@ const Result = () => {
       </select>
       <select
         name="theme"
-        value={tableMode}
+        value={theme}
         onChange={(e) => setTheme(e.target.value)}
       >
         <option value="original">Original</option>

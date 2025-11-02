@@ -3,7 +3,7 @@ const moment = require('moment-jalaali');
 const app = require('./server');
 const holidaysList = require('./holidayslist');
 
-const genShift = (startDateStr, endDateStr, month, year, shiftDuration) => {
+const genShift = (startDateStr, endDateStr, month, year, shiftDuration, id) => {
   const twoDigitMonth = ('0' + month).slice(-2);
 
   let startM = new moment(startDateStr);
@@ -52,6 +52,24 @@ const genShift = (startDateStr, endDateStr, month, year, shiftDuration) => {
       startM.minute(59);
       startM.second(59);
     }
+    if (shiftEndM.isBefore(endM)) {
+      endM.hour(8);
+      endM.minute(0);
+      endM.second(1);
+    }
+  }
+
+  // messy part ( added long after the app was complete )
+  // there is a bug for firefighters when rounding late leaves
+  // the current state only grabs the leaves by 8 pm, but they leave at 8 am
+  // i added this part to only fix it temporarily, the right way is to make it so that the enter and leave times are captured within the staff and it should be dynamic by the staff
+  // but for now i hard code the late leaves here...
+
+  if (shiftDuration === 24) {
+    const shiftEndM = endM.clone();
+    shiftEndM.hour(7);
+    shiftEndM.minute(45);
+
     if (shiftEndM.isBefore(endM)) {
       endM.hour(8);
       endM.minute(0);

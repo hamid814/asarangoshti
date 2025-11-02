@@ -15,13 +15,13 @@ app.use(
 );
 
 //set up morgan
-app.use(
-  morgan('dev', {
-    skip: function (req, res) {
-      return req.url == '/favicon.ico';
-    },
-  })
-);
+// app.use(
+//   morgan('dev', {
+//     skip: function (req, res) {
+//       return req.url == '/favicon.ico';
+//     },
+//   })
+// );
 
 app.use('/api', require('./routes'));
 
