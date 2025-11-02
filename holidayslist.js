@@ -1,14 +1,3 @@
-// const holidayList = () => {
-//   const list = [
-//     {
-//       month: 1,
-//       days: [],
-//     },
-//   ];
-
-//   return list.map();
-// };
-
 module.exports = [
   {
     day: 1,
