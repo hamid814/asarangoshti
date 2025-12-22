@@ -322,6 +322,7 @@ button:hover {
   direction: rtl;
   transition: 0.35s;
   cursor: default;
+  overflow: hidden;
 }
 .single-shift:hover {
   transform: scale(1.05);
@@ -335,8 +336,8 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--main-bg-color);
-  background-color: rgba(0, 255, 0, 0.5);
+  color: var(--text-color);
+  background-color: rgb(30, 30, 30);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
