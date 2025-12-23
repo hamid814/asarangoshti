@@ -292,6 +292,13 @@ const getCalculatedTransits = (req, res, next) => {
     });
   });
 
+  let initFullMonthDuration = 0;
+  data.forEach((d) => {
+    initFullMonthDuration += d.total.duration;
+    // console.log(d.total);
+  });
+  console.log(initFullMonthDuration);
+
   const calculationEndTime = performance.now();
 
   const calculationTime = calculationEndTime - calculationStartTime;

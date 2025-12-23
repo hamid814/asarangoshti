@@ -36,8 +36,8 @@ const genShift = (startDateStr, endDateStr, month, year, shiftDuration) => {
       endM.second(1);
     }
   } else if (
-    eveningHours.includes(startHour) ||
-    morningHours.includes(endHour)
+    (eveningHours.includes(startHour) || morningHours.includes(endHour)) &&
+    shiftDuration != 24
   ) {
     // night shift
     const shiftStartM = startM.clone();
@@ -59,10 +59,10 @@ const genShift = (startDateStr, endDateStr, month, year, shiftDuration) => {
     }
   }
 
-  // messy part ( added long after the app was complete )
+  // messy part ( added a long time after the app was complete )
   // there is a bug for firefighters when rounding late leaves
   // the current state only grabs the leaves by 8 pm, but they leave at 8 am
-  // i added this part to only fix it temporarily, the right way is to make it so that the enter and leave times are captured within the staff and it should be dynamic by the staff
+  // I added this part to only fix it temporarily, the right way is to make it so that the enter and leave times are captured within each  single staff and it should be dynamic by the staff
   // but for now i hard code the late leaves here...
 
   if (shiftDuration === 24) {

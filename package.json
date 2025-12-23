@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "both": "concurrently \"node server\" \"cd client && npm start\""
+    "both": "concurrently \"node server\" \"cd client && npm start\"",
+    "devServer": "nodemon server",
+    "devClient": "cd client && npm start"
   },
   "dependencies": {
     "colors": "^1.4.0",
