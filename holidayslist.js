@@ -16,10 +16,6 @@ module.exports = [
     month: 1,
   },
   {
-    day: 11,
-    month: 1,
-  },
-  {
     day: 12,
     month: 1,
   },
@@ -28,72 +24,64 @@ module.exports = [
     month: 1,
   },
   {
-    day: 4,
-    month: 2,
+    day: 25,
+    month: 1,
   },
   {
-    day: 14,
-    month: 3,
-  },
-  {
-    day: 15,
-    month: 3,
-  },
-  {
-    day: 16,
-    month: 3,
-  },
-  {
-    day: 24,
+    day: 6,
     month: 3,
   },
   {
     day: 14,
-    month: 4,
-  },
-  {
-    day: 15,
-    month: 4,
-  },
-  {
-    day: 23,
-    month: 5,
-  },
-  {
-    day: 31,
-    month: 5,
-  },
-  {
-    day: 2,
-    month: 6,
-  },
-  {
-    day: 10,
-    month: 6,
-  },
-  {
-    day: 19,
-    month: 6,
+    month: 3,
   },
   {
     day: 3,
-    month: 9,
+    month: 4,
+  },
+  {
+    day: 4,
+    month: 4,
   },
   {
     day: 13,
+    month: 5,
+  },
+  {
+    day: 21,
+    month: 5,
+  },
+  {
+    day: 22,
+    month: 5,
+  },
+  {
+    day: 8,
+    month: 6,
+  },
+  {
+    day: 2,
     month: 10,
   },
   {
-    day: 27,
+    day: 16,
     month: 10,
   },
   {
-    day: 15,
+    day: 4,
     month: 11,
   },
   {
     day: 22,
     month: 11,
+  },
+  {
+    day: 9,
+    month: 12,
+  },
+  {
+    day: 19,
+    month: 12,
   },
   {
     day: 20,

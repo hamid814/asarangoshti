@@ -49,7 +49,7 @@ const changeStaffIsActive = (id) => {
       } else {
         return { ...s };
       }
-    })
+    }),
   );
 };
 
@@ -58,7 +58,7 @@ const deleteStaff = (id) => {
 
   db.set(
     'staff',
-    db.get('staff').filter((s) => s.id != id)
+    db.get('staff').filter((s) => s.id != id),
   );
 };
 
@@ -96,7 +96,7 @@ const addDeletedtransit = (id, dateStr) => {
 
   db.set(
     'addedTransits',
-    addedTransits.filter((t) => !(t[0] === id && t[1] === dateStr))
+    addedTransits.filter((t) => !(t[0] === id && t[1] === dateStr)),
   );
 };
 
@@ -112,7 +112,7 @@ const addAddedTransit = (id, dateStr) => {
 
   db.set(
     'deletedTransits',
-    deletedTransits.filter((t) => !(t[0] === id && t[1] === dateStr))
+    deletedTransits.filter((t) => !(t[0] === id && t[1] === dateStr)),
   );
 };
 
@@ -134,7 +134,7 @@ const resetTransitsInMonth = (id, month, year) => {
       } else {
         return true;
       }
-    })
+    }),
   );
   db.set(
     'addedTransits',
@@ -145,7 +145,7 @@ const resetTransitsInMonth = (id, month, year) => {
       } else {
         return true;
       }
-    })
+    }),
   );
 };
 

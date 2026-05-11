@@ -48,7 +48,9 @@ body {
   color: var(--text-color) !important;
   font-family: var(--font-family);
   text-shadow: var(--text-shadow);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 button {
@@ -95,14 +97,14 @@ button:hover {
 }
 
 .table-container {
-  width: 50%;
+  width: 45%;
   text-align: right;
   direction: rtl;
   position: relative;
 }
 
 .result-container {
-  width: 30%;
+  width: 35%;
   text-align: right;
   direction: rtl;
 }

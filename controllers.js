@@ -58,7 +58,7 @@ const getDaysInMonth = (req, res, next) => {
 
   const currentDay = new moment(
     `${config.year}-${monthNum}-1`,
-    'jYYYY-jMM-jDD'
+    'jYYYY-jMM-jDD',
   );
 
   // add one day before month to calculate
@@ -125,7 +125,7 @@ const getTransitsByIdAndDate = (req, res, next) => {
   const startOfMonth = new moment(`${year}-${month}`, 'jYYYY-jMM');
   startOfMonth.subtract(1, 'day');
   const endOfMonth = new moment(`${year}-${month}`, 'jYYYY-jMM').endOf(
-    'jMonth'
+    'jMonth',
   );
   endOfMonth.add(1, 'day');
 
@@ -245,7 +245,7 @@ const getCalculatedTransits = (req, res, next) => {
           transits[i + 1].dateStr,
           month,
           year,
-          thisStaff.shiftDuration
+          thisStaff.shiftDuration,
         );
         shift.color = color;
 
@@ -273,13 +273,15 @@ const getCalculatedTransits = (req, res, next) => {
       days: days.size,
       shiftsCount,
       duration: parseFloat(
-        shifts.reduce((acc, shift) => acc + shift.duration, 0).toFixed(2)
+        shifts.reduce((acc, shift) => acc + shift.duration, 0).toFixed(2),
       ),
       nightDuration: parseFloat(
-        shifts.reduce((acc, shift) => acc + shift.nightDuration, 0).toFixed(2)
+        shifts.reduce((acc, shift) => acc + shift.nightDuration, 0).toFixed(2),
       ),
       holidayDuration: parseFloat(
-        shifts.reduce((acc, shift) => acc + shift.holidayDuration, 0).toFixed(2)
+        shifts
+          .reduce((acc, shift) => acc + shift.holidayDuration, 0)
+          .toFixed(2),
       ),
     };
 
@@ -295,9 +297,7 @@ const getCalculatedTransits = (req, res, next) => {
   let initFullMonthDuration = 0;
   data.forEach((d) => {
     initFullMonthDuration += d.total.duration;
-    // console.log(d.total);
   });
-  console.log(initFullMonthDuration);
 
   const calculationEndTime = performance.now();
 

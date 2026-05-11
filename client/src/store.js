@@ -5,7 +5,7 @@ const useStore = create((set, get) => ({
   activeStaffId: 3392,
   wholeData: [], // all of data of all staff for active month
   daysInMonth: [],
-  month: 9,
+  month: 1,
   year: 1404, // year is not used in the client app - the backend has the year functionality (/api/set-year) and (config.js.year) - right now to change year => change to config.js file
   activeDay: null, // 1404-01-01
   isModalOpen: false,
