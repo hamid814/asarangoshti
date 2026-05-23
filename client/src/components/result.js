@@ -21,7 +21,7 @@ const Result = () => {
 
   // number of hours [movazaf] in a month
   const movazafiList = [
-    160, 200, 184, 200, 200, 192, 208, 200, 200, 192, 192, 184,
+    160, 216, 192, 200, 184, 208, 208, 200, 208, 192, 184, 168,
   ];
   const monthNames = [
     'Farvardin',
@@ -51,7 +51,7 @@ const Result = () => {
 
     setLoading(true);
     fetch(
-      `http://localhost:5000/api/get-calculated-transits?month=${month}&${queryString}`
+      `http://localhost:5000/api/get-calculated-transits?month=${month}&${queryString}`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -72,7 +72,7 @@ const Result = () => {
       json,
       `${monthNames[month - 1]}-${tableMode}.${
         tableMode === 'sepidar' ? 'xls' : 'xlsx'
-      }`
+      }`,
     );
   };
 
@@ -162,7 +162,7 @@ const Result = () => {
                 )}
                 <td>
                   {displayHour(
-                    Math.max(0, item.total.duration - movazafiList[month - 1])
+                    Math.max(0, item.total.duration - movazafiList[month - 1]),
                   )}
                 </td>
                 <td>{displayHour(item.total.nightDuration)}</td>
@@ -171,7 +171,7 @@ const Result = () => {
               </tr>
             ) : (
               ''
-            )
+            ),
           )}
         </tbody>
       </table>
